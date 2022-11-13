@@ -11,6 +11,7 @@ let parameters = []
 
 var count=0;
 var countOne=0;
+statusV=0;
 
 function removeElement(event, position) {
     event.target.parentElement.remove()
@@ -66,6 +67,7 @@ $(document).ready(function() {
     const $btnAdd= document.getElementById("btnAdd")
     document.getElementById("registration").disabled = true
     document.getElementById("finish").disabled = true
+    document.getElementById("status").disabled = true
     document.getElementById("btnSave").style.display = 'none'; // hide
 
 
@@ -90,6 +92,18 @@ $(document).ready(function() {
 
             });
         });
+    })
+
+    //STATUS
+    $("#status").change(function() {
+        if( $(this).is(':checked') ) {
+            statusV=1;
+            
+        } else {
+    
+            statusV=0;
+           
+        }
     })
 
    
@@ -118,7 +132,7 @@ $(document).ready(function() {
                 registration: $form.registration.value,
                 finish: $form.finish.value,
                 description: $form.description.value,
-                status: $form.status.value,
+                status: statusV,
 
 
 
@@ -171,7 +185,7 @@ $(document).ready(function() {
 
         if (parameters.length!=0) {
 
-            alert(parameters.length)
+           
 
 
             Swal.fire({
@@ -189,9 +203,14 @@ $(document).ready(function() {
 
 
 
-                    var str_json = ` ${JSON.stringify(parameters)}`
+                   
                     
-                    alert(str_json)
+                    var str_json = ` ${JSON.stringify(parameters)}`
+                    const request = new XMLHttpRequest()
+                    request.open("POST", "TaskApp.php")
+                    request.setRequestHeader("Content-type", "application/json")
+                    request.send(str_json)
+                    console.log(str_json)
 
 
                     
