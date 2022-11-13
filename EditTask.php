@@ -27,6 +27,14 @@
 
     <div class="row">
 
+            <div class="col-md-3">
+            <label class="labeltittle">Task</label>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">  <i class="fas fa-tasks"></i></span>
+            <input type="input" class="form-control" name="task" id="task" title="Task" placeholder="Task">
+            </div>
+            </div>
+
 
             <div class="col-md-3">
             <label class="labeltittle">Area</label>
@@ -53,7 +61,7 @@
 			<div class="col-md-3">
             <label class="labeltittle">Colaborador</label>
             <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">  <i class="fas fa-list"></i></span>
+            <span class="input-group-text" id="basic-addon1">  <i class="fas fa-user"></i></span>
             <select class="form-select" name="coworker" id="coworker" title="Clase">
 														<option selected value=""></option>
 														
@@ -65,9 +73,52 @@
             </div>
             </div>
 
+            <div class="col-md-3">
+            <label class="labeltittle">Fecha Inicio</label>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">  <i class="fas fa-calendar"></i></span>
+            <input type="date" class="form-control" name="registration" id="registration" title="Fecha Inicio" >
+            </div>
+            </div>
+
+
+            <div class="col-md-3">
+            <label class="labeltittle">Fecha de Finalizacion</label>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">  <i class="fas fa-calendar"></i></span>
+            <input type="date" class="form-control" name="finish" id="finish" value="" title="Fecha de Finalizacion" >
+            </div>
+            </div>
+
+
+            <div class="col-md-6">
+            <label class="labeltittle">Descripcion</label>
+            <textarea class="form-control" id="description" name="description" rows="1"></textarea>
+            </div>
+
+            <div class="col-md-3">
+            <label class="labeltittle">Completado</label>
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="status">
+            
+            </div>
+            </div>
+
+
             
 
             
+    </div>
+
+
+    </br>
+
+    <div class="d-grid gap-2 col-4 mx-auto">
+            
+                        <button id="btnSave" name="btnSave" type="button" class="btn btn-primary" >
+                            Save
+                        </button>
+                        
     </div>
 
 </form>
