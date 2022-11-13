@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task </title>
+    <link rel="stylesheet" href="./css/Styles.css">
+    <link rel="stylesheet" href="./css/sweetalert2.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+   	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+<body>
+<?php		
+		include("./Functions.php");
+	    $conexion = conectar();
+	
+
+?>
+<h1 class="labeltopicmain">Task</h1>
+<div class="container">
+
+
+    <form action="" id="frmGeneral" name="frmGeneral" method="POST" >
+
+
+    <div class="row">
+
+
+            <div class="col-md-3">
+            <label class="labeltittle">Area</label>
+            <div class="input-group mb-2">
+            <span class="input-group-text" id="basic-addon1">  <i class="fas fa-building"></i></span>
+            <select class="form-select" name="area" id="area" title="Area">
+														<option selected value=""></option>
+														
+															
+														
+										
+									<?php
+									$result = $conexion->query("SELECT id_area, area_description FROM area ");
+									if ($result->num_rows > 0) {
+										while ($row = $result->fetch_assoc()) { 
+											echo '<option value="'.$row['id_area'].'">'.$row['area_description'].'</option>';
+										}
+									}
+									?>
+			</select>
+            </div>
+            </div>
+
+			<div class="col-md-3">
+            <label class="labeltittle">Colaborador</label>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">  <i class="fas fa-list"></i></span>
+            <select class="form-select" name="coworker" id="coworker" title="Clase">
+														<option selected value=""></option>
+														
+															
+														
+													
+													
+			</select>
+            </div>
+            </div>
+
+            
+
+            
+    </div>
+
+</form>
+
+            
+
+
+</div>
+
+
+<br>
+
+
+<footer>
+   
+   <p style="text-align:center "> <strong><i class="fas fa-laptop-code"> </i> Miguel Valle</strong></p>
+   <p style="text-align:center "> <strong>made with     &#128147</strong></p>
+
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script src="./js/sweetalert2.all.js"></script>
+<script language="javascript"src="./js/EditTask.js"></script>
+</body>
+</html>
