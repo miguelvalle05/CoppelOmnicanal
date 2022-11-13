@@ -9,20 +9,30 @@ var Toast = Swal.mixin({
 
 let parameters = []
 
-
+var count=0;
+var countOne=0;
 
 function removeElement(event, position) {
     event.target.parentElement.remove()
-    delete parameters[position]
+
+    for (var i = 0; i < parameters.length; i++) {
+
+        if(parameters[i].id == position){
+
+            delete parameters[i]
+            
+        }
+        
+    }
+   
     
    
 }
 
 const addJsonElement = json => {
     parameters.push(json)
-    return parameters.length-1
-   
- 
+    return ++count
+
 }
 
 
@@ -84,22 +94,84 @@ $(document).ready(function() {
 
    
 
- 
+
+    //HOME
+    $btnHome.addEventListener("click", (event) => {
+
+       
+        window.location.href = "http://localhost/coppel/Home.php";
+
+    })
 
 
-   
 
-   
-
-
+    //ADD
+    $btnAdd.addEventListener("click", (event) => {
 
 
+        if ($form.area.value != "" && $form.coworker.value != "" && $form.description.value != "") {
+            let index = addJsonElement({
 
-    //SAVE
-    $btnSave.addEventListener("click", (event) => {
-        alert(parameters.length)
+                id:++countOne,
+                area: $form.area.value,
+                coworker: $form.coworker.value,
+                registration: $form.registration.value,
+                finish: $form.finish.value,
+                description: $form.description.value,
+                status: $form.status.value,
+
+
+
+            })
+
+           
+            
+
+            const $div = document.createElement("div")
+            $div.classList.add("notification", "is-link", "is-light", "py-2", "my-1")
+            
+            $div.innerHTML = templateElement(`
+            ${$form.area.options[area.selectedIndex].text}: 
+            ${$form.coworker.options[coworker.selectedIndex].text} 
+            <br>
+            ${$form.description.value}
+            <br>
+            Inicio: ${$form.registration.value} Final: Por Definir`, index)
+
+          
+            $divElements.insertBefore($div, $divElements.firstChild)
+
+
+            document.getElementById("btnSave").style.display = ''; // Show
+
+        } else {
+
+            alert("Completa los campos")
+         
+            
+
+
+
+        }
+
+       
+        
+
+    })
+
+
+
+
+
+     //SAVE
+     $btnSave.addEventListener("click", (event) => {
+
+        parameters = parameters.filter(el => el != null)
+        
 
         if (parameters.length!=0) {
+
+            alert(parameters.length)
 
 
             Swal.fire({
@@ -147,79 +219,6 @@ $(document).ready(function() {
 
     })
 
-
-    //HOME
-    $btnHome.addEventListener("click", (event) => {
-
-       
-        window.location.href = "http://localhost/coppel/Home.php";
-
-    })
-
-
-
-    //ADD
-    $btnAdd.addEventListener("click", (event) => {
-
-
-        if ($form.area.value != "" && $form.coworker.value != "" && $form.description.value != "") {
-            let index = addJsonElement({
-
-
-                area: $form.area.value,
-                coworker: $form.coworker.value,
-                registration: $form.registration.value,
-                finish: $form.finish.value,
-                description: $form.description.value,
-                status: $form.status.value,
-
-
-
-            })
-
-            const $div = document.createElement("div")
-            $div.classList.add("notification", "is-link", "is-light", "py-2", "my-1")
-            
-            $div.innerHTML = templateElement(`
-            ${$form.area.options[area.selectedIndex].text}: 
-            ${$form.coworker.options[coworker.selectedIndex].text} 
-            <br>
-            ${$form.description.value}
-            <br>
-            Inicio: ${$form.registration.value} Final: Por Definir`, index)
-
-          
-            $divElements.insertBefore($div, $divElements.firstChild)
-
-
-            document.getElementById("btnSave").style.display = ''; // Show
-
-        } else {
-
-            alert("Completa los campos")
-         
-            
-
-
-
-        }
-
-       
-        
-
-    })
-
-
-
-
-
-     //HOME
-     $btnHome.addEventListener("click", (event) => {
-
-       
-        window.location.href = "http://localhost/coppel/Home.php";
-
-    })
 
 
 
