@@ -9,6 +9,18 @@ var Toast = Swal.mixin({
 
 
 
+let parameters = []
+
+var statusV=0
+
+
+
+const addJsonElement = json => {
+    parameters.push(json)
+    
+}
+
+
 
 
 
@@ -80,6 +92,8 @@ $(document).ready(function() {
         else {
     
             statusV=0;
+            $("#finish").val("0000-00-00");
+            
            
         }
     })
@@ -129,7 +143,7 @@ $(document).ready(function() {
 
 
                         document.querySelector('#status').checked = true;
-                        discontinuedV=1;
+                        statusV=1;
 
 
 
@@ -156,6 +170,85 @@ $(document).ready(function() {
 
     //SAVE
     $btnSave.addEventListener("click", (event) => {
+
+
+        if ($form.task.value != "" && $form.area.value != "" && $form.coworker.value != "") {
+
+
+            Swal.fire({
+                title: "¡CONFIRMAR!",
+                icon: "warning",
+                text: "¿Esta seguro de que desea actualizar la tarea "+$form.task.value+"?",
+                showCancelButton: true,
+                confirmButtonText: "Si, deseo actualizar",
+                cancelButtonText: "Cancelar"
+
+            }).then(resultado => {
+                if (resultado.value) {
+
+                    addJsonElement({
+
+
+                        task: $form.task.value,
+                        status: statusV,
+                        area: $form.area.value,
+                        coworker: $form.coworker.value,
+                        registration: $form.registration.value,
+                        finish: $form.finish.value,
+                        description: $form.description.value,
+                
+                       
+                       
+                       
+    
+    
+    
+                    })
+
+                    parameters = parameters.filter(el => el != null)
+                    var str_json = ` ${JSON.stringify(parameters)}`
+                    
+
+
+                    parameters = parameters.filter(el => el != null)
+                    var str_json = ` ${JSON.stringify(parameters)}`
+                    const request = new XMLHttpRequest()
+                    request.open("POST", "EditTaskApp.php")
+                    request.setRequestHeader("Content-type", "application/json")
+                    request.send(str_json)
+                    console.log(str_json)
+
+
+
+                    Toast.fire({
+                        icon: "success",
+                        title: "La tarea se actualizo"
+
+                    })
+
+                   
+
+                    //$form.reset()
+
+                   // window.location.href = "http://localhost/coppelomnicanal/Home.php";
+
+                } else {
+
+
+
+                }
+
+
+            })
+
+
+
+
+        } else {
+            alert("Completa los campos de SKU")
+        }
+
+
 
        
 

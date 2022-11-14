@@ -11,7 +11,7 @@ let parameters = []
 
 var count=0;
 var countOne=0;
-statusV=0;
+var statusV=0;
 
 function removeElement(event, position) {
     event.target.parentElement.remove()
