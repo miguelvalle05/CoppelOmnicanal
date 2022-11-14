@@ -12,6 +12,7 @@
 
 </head>
 <body>
+    
 <?php		
 		include("./Functions.php");
 	    $conexion = conectar();
