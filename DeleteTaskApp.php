@@ -5,20 +5,12 @@
 
     <body>
     <?php		
-		include("./funciones.php");
-		$conexion = conectar();
-		
-    
+		include("./Functions.php");
+	    $conexion = conectar();
+	    $task=$_POST['task'];
+          
 
-      
-            $codigo=$_POST['codigo'];
-            echo $codigo;
-
-
-
-
-               
-            $consulta= "DELETE FROM equipmenthistory_ap WHERE codigo = '$codigo'";		
+            $consulta= "DELETE FROM task WHERE id_task = '$task'";		
             if ($result = $conexion->query($consulta)) {
                  $resultado="$resultado<br />SE ELIMINO SERVICIO";
                  echo 1;		
@@ -29,27 +21,6 @@
 
             }
 
-
-             
-            $consulta= "DELETE FROM assingfeaturesvalue_ap WHERE codigo = '$codigo'";		
-            if ($result = $conexion->query($consulta)) {
-                 $resultado="$resultado<br />SE ELIMINO ATRIBUTOS";		
-                 echo 1; 
-            }
-            else{
-                $resultado=$resultado.$consulta."Error: al eliminar ATRIBUTOS";
-                echo 0; 
-               
-
-            } 
-
-
-                    
-
-
-
-             
-			
 	
 	?>
     </body>

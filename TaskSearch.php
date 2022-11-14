@@ -31,11 +31,72 @@
     <h1 class="title has-text-centered">Task</h1>
     
 <div class="container">
+<form class="row g-3 needs-validation" >
+
+
+            <div class="col-md-3">
+            <label class="labeltittle">Area</label>
+            <div class="input-group mb-2">
+            <span class="input-group-text" id="basic-addon1">  <i class="fas fa-building"></i></span>
+            <select class="form-select" name="area" id="area" title="Area">
+														<option selected value=""></option>
+														
+															
+														
+										
+									<?php
+									$result = $conexion->query("SELECT id_area, area_description FROM area ");
+									if ($result->num_rows > 0) {
+										while ($row = $result->fetch_assoc()) { 
+											echo '<option value="'.$row['id_area'].'">'.$row['area_description'].'</option>';
+										}
+									}
+									?>
+			</select>
+            </div>
+            </div>
+
+			<div class="col-md-3">
+            <label class="labeltittle">Colaborador</label>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"> <i class="fas fa-user"></i></span>
+            <select class="form-select" name="coworker" id="coworker" title="Colaborador">
+														<option selected value=""></option>
+														
+															
+														
+													
+													
+			</select>
+            </div>
+            </div>
+
+
+            <div class="col-md-3">
+            <label class="labeltittle">Colaborador</label>
+            <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"> <i class="fas fa-user"></i></span>
+            <select class="form-select" name="status" id="status" title="Clase">
+														<option selected value=""></option>
+														
+															
+														
+													
+													
+			</select>
+            </div>
+            </div>
+
+
+
+			
+</form>
+
        
 
        <div class="row">
            <div class="col-lg-12">
-            <table id="dt_equipment" class="table table-striped table-bordered" style="width:100%">
+            <table id="dt_task" class="table table-striped table-bordered" style="width:100%">
                 <thead class="text-center">
                     <th>Id</th>
                     <th>Usuario</th>

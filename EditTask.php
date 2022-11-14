@@ -13,7 +13,8 @@
 </head>
 <body>
     
-<?php		
+<?php	
+        $taskEdit=$_GET['id_task'];	
 		include("./Functions.php");
 	    $conexion = conectar();
 	
@@ -32,7 +33,7 @@
             <label class="labeltittle">Task</label>
             <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">  <i class="fas fa-tasks"></i></span>
-            <input type="input" class="form-control" name="task" id="task" title="Task" placeholder="Task">
+            <input type="input" class="form-control" name="task" id="task" title="Task" value="<? echo $taskEdit  ?>" placeholder="Task">
             </div>
             </div>
 

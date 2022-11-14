@@ -54,7 +54,7 @@
             <label class="labeltittle">Colaborador</label>
             <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"> <i class="fas fa-user"></i></span>
-            <select class="form-select" name="coworker" id="coworker" title="Clase">
+            <select class="form-select" name="coworker" id="coworker" title="Colaborador">
 														<option selected value=""></option>
 														
 															

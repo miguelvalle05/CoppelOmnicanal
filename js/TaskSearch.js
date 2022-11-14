@@ -3,40 +3,74 @@ $(document).ready(function() {
 
     var equipment_id, fila, equipment_user;
 
-    EquipmentTable = $('#dt_equipment').DataTable({
-        "ajax": {
-            "url": "TaskRecords.php",
-            dom: "Bfrtip",
-            "method": 'POST', //usamos el metodo POST
-            //"data":{opcion:opcion}, //enviamos opcion 4 para que haga un SELECT
-            "dataSrc": ""
-        },
-        "columns": [
-            { "data": "codigo" },
-            { "data": "eDescription" },
-            { "data": "fvDescription" },
-            { "defaultContent": "<button type='button' class='btn btn-primary btnEdit'><i class='material-icons'>edit</i></button><button type='button' class='btn btn-danger btnDelete' data-toggle='modal' data-target='#modalEliminar' ><i class='material-icons'>delete</i></button>" }
-        ],
+    // Fetch Records
+    function fetch(area, user, status, opcion) {
 
-        "responsive": true,
+        $.ajax({
+            url: "TaskRecords.php",
+            type: "post",
+            data: {
 
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
-        }
-    });
+                area: area,
+                user: user,
+                status: status,
+                opcion: opcion,
+                otro: ""
+
+
+            },
+            dataType: "json",
+            success: function(data) {
+                var i = 1;
+                TaskTable = $('#dt_task').DataTable({
+
+                    "data": data,
+                    "responsive": true,
+                    "columns": [
+
+                        { "data": "id_task" },
+                        { "data": "user" },
+                        { "data": "descripcion" },
+
+                        {
+                            data: "id_task",
+                            render: function(data) {
+                                return "<button type='button' class='btn btn-primary btnEdit'  data-whatever='" + data + "'><i class='material-icons'>edit</i></button><button type='button' class='btn btn-danger btnDelete' data-whatever='" + data + "'><i class='material-icons'>delete</i></button>";
+
+                            }
+                        },
+
+                        {
+                            data: "id_task",
+                            render: function(data) {
+                                return "<button type='button' id='imgp' class='sinborde' data-whatever='" + data + "'><img class='zoom_manija' src='../../../programas/imagenes/fotos/" + data + ".jpg'   width='500' ></button>";
+
+                            }
+                        }
+
+
+
+                    ],
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                    }
+                });
+            }
+        });
+
+    }
+    fetch();
+
 
 
 
     $(document).on('click', '.btnEdit', function() {
 
-        //var recipiente = $(this).data("whatever");
-        fila = $(this).closest("tr");
-        equipment_id = fila.find('td:eq(0)').text(); //capturo el ID	
-        equipment_user = fila.find('td:eq(2)').text(); //capturo user	
+        var recipiente = $(this).data("whatever");
 
-        $("#modal-title").html("Editar Tarea - " + equipment_user);
+        $("#modal-title").html("Editar Tarea - " + recipiente);
 
-        $('.modal-body').load('editequipmentmodal.php?co=' + equipment_id, function() {
+        $('.modal-body').load('EditTask.php?id_task=' + recipeinte, function() {
 
 
             $('#editModal').modal({ show: true });
@@ -48,17 +82,13 @@ $(document).ready(function() {
 
     $(document).on('click', '.btnDelete', function() {
 
-        //var recipiente = $(this).data("whatever");
-        fila = $(this).closest("tr");
-        equipment_id = fila.find('td:eq(0)').text(); //capturo el ID	
-        equipment_user = fila.find('td:eq(2)').text(); //capturo user	
-        // alert(equipment_id)
+        var recipiente = $(this).data("whatever");
 
 
         Swal.fire({
             title: "¡CONFIRMAR!",
             icon: "warning",
-            text: "¿Esta seguro de eliminar el equipo de " + equipment_user + "?",
+            text: "¿Esta seguro de eliminar la tarea" + recipiente + "?",
             showCancelButton: true,
             confirmButtonText: "Si, deseo eliminar",
             cancelButtonText: "Cancelar"
@@ -69,7 +99,7 @@ $(document).ready(function() {
                     url: "DeleteTaskApp.php",
                     type: "post",
                     data: {
-                        codigo: equipment_id
+                        task: recipiente
                     }
                 }).done(function(res) {
                     if (res == 0) {
@@ -77,11 +107,11 @@ $(document).ready(function() {
 
                     } else {
 
-                        window.EquipmentTable.ajax.reload(null, false);
+                        window.TaskTable.ajax.reload(null, false);
 
                         Toast.fire({
                             icon: "success",
-                            title: "El equipo se elimino"
+                            title: "La tarea se elimino"
 
                         })
 
