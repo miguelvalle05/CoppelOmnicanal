@@ -64,7 +64,7 @@ function fetch(areaS, coworkerS, statusS, opcion) {
                     {
                         data: "id_task",
                         render: function(data) {
-                            return "<button type='button' class='btn btn-primary btnEdit'  data-whatever='" + data + "'><i class=\"fas fa-edit\"></i></button><button type='button' class='btn btn-danger btnDelete' data-whatever='" + data + "'><i class=\"fas fa-trash\"></i></button>";
+                            return "<button type='button' class='btn btn-danger btnDelete' data-whatever='" + data + "'><i class=\"fas fa-trash\"></i></button>";
     
                         }
                     }
@@ -209,57 +209,6 @@ function fetch(areaS, coworkerS, statusS, opcion) {
 
    
 
-
-/*TaskTable = $('#dt_task').DataTable({
-    "ajax": {
-        "url": "TaskRecords.php",
-        dom: "Bfrtip",
-        "method": 'POST', //usamos el metodo POST
-        //"data":{opcion:opcion}, //enviamos opcion 4 para que haga un SELECT
-        "dataSrc": ""
-    },
-    "columns": [
-        { "data": "id_task" },
-        { "data": "id_user" },
-        { "data": "descripcion" },
-        {
-            "data": "id_task",
-            "render": function(data) {
-                return "<button type='button' class='btn btn-primary btnEdit'  data-whatever='" + data + "'><i class=\"fas fa-edit\"></i></button><button type='button' class='btn btn-danger btnDelete' data-whatever='" + data + "'><i class=\"fas fa-trash\"></i></button>";
-
-            }
-        }
-
-
-
-           ],
-
-    "responsive": true,
-
-    "language": {
-        "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
-    }
-});
-*/
-
-
-
-
-    $(document).on('click', '.btnEdit', function() {
-
-        var recipiente = $(this).data("whatever");
-
-        $("#modal-title").html("Editar Tarea - " + recipiente);
-
-        $('.modal-body').load('EditTask.php?id_task=' + recipiente, function() {
-            
-
-
-            $('#editModal').modal('show');
-
-        });
-
-    });
 
     //DELETE
     $(document).on('click', '.btnDelete', function() {

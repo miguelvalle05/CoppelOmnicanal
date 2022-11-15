@@ -30,7 +30,8 @@
 
 
   <button class="btn btn-success" type="button" onClick="redirect(1)">Add Task</button>
-  <button class="btn btn-warning" type="button" onClick="redirect(2)">Edit Task</button>
+  <button class="btn btn-warning" type="button" onClick="redirect(2)">View Task</button>
+  <button class="btn btn-primary" type="button" onClick="redirect(3)">Edit Task</button>
   
 </div>
 
@@ -66,6 +67,9 @@
     }
     if(page==2){
         window.location.href="TaskSearch.php"
+    }
+    if(page==3){
+        window.location.href="EditTask.php"
     }
     }
     </script>
