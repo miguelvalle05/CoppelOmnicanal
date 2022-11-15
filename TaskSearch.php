@@ -1,22 +1,23 @@
 <html lang="en">
 <head>
 <!-- Required meta tags -->
-<meta http-equiv="Expires" content="0">
+  <meta http-equiv="Expires" content="0">
   <meta http-equiv="Last-Modified" content="0">
   <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
   <meta http-equiv="Pragma" content="no-cache">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Task</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Search</title>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-<link rel="stylesheet" href="./css/sweetalert2.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.css"/>
+  
+  <link rel="stylesheet" href="./css/sweetalert2.css">
 
-<!-- Customized-->
-<link rel="STYLESHEET" type="text/css" href="./css/Styles.css"></link>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.css"/>
+  <link rel="STYLESHEET" type="text/css" href="./css/styles.css"></link>
+
+
  
 </head>
 
@@ -28,7 +29,7 @@
         
 
 ?>
-    <h1 class="title has-text-centered">Task</h1>
+    <h1 class="labeltopicmain">Task</h1>
     
 <div class="container">
 <form class="row g-3 needs-validation" >
@@ -38,7 +39,7 @@
             <label class="labeltittle">Area</label>
             <div class="input-group mb-2">
             <span class="input-group-text" id="basic-addon1">  <i class="fas fa-building"></i></span>
-            <select class="form-select" name="area" id="area" title="Area">
+            <select class="form-control" name="areaS" id="areaS" title="Area">
 														<option selected value=""></option>
 														
 															
@@ -60,11 +61,24 @@
             <label class="labeltittle">Colaborador</label>
             <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"> <i class="fas fa-user"></i></span>
-            <select class="form-select" name="coworker" id="coworker" title="Colaborador">
+            <select class="form-control" name="coworkerS" id="coworkerS" title="Colaborador">
 														<option selected value=""></option>
 														
 															
-														
+                                                        <?php
+									$result = $conexion->query("SELECT DISTINCT u.id_user,
+                                    u.user_name
+                                    FROM task t
+                                    INNER JOIN user u ON t.id_user=u.id_user
+                                    
+
+                                     ");
+									if ($result->num_rows > 0) {
+										while ($row = $result->fetch_assoc()) { 
+											echo '<option value="'.$row['id_user'].'">'.$row['user_name'].'</option>';
+										}
+									}
+									?>			
 													
 													
 			</select>
@@ -73,10 +87,10 @@
 
 
             <div class="col-md-3">
-            <label class="labeltittle">Colaborador</label>
+            <label class="labeltittle">Estatus</label>
             <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"> <i class="fas fa-user"></i></span>
-            <select class="form-select" name="status" id="status" title="Clase">
+            <select class="form-control" name="statusS" id="statusS" title="Clase">
 														<option selected value=""></option>
 														
 															
@@ -115,7 +129,21 @@
            </div>
        </div> 
 
-       
+
+
+    </br>
+
+    <div class="col text-center">
+            
+                        <button id="btnHome" name="btnHome" type="button" class="btn btn-success" >
+                        <i class="fas fa-home"></i>
+                        </button>
+                        
+    </div>
+
+    </br>
+
+  <!--     
        <p class="title is-4 is-spaced">Reporte:</p>
      
             <div class="control">
@@ -127,12 +155,10 @@
             <span class="man" name="report" id="report">
 
             
-							
-							<?php echo $_POST['report'];?><?php echo $_POST['report'];?>
 						
 			</span>	
 
-            </div>
+            </div> -->
 
             
      
@@ -159,6 +185,9 @@
         
                     
                 </div>
+
+
+                
                 
             </div>
         </div>
@@ -184,32 +213,17 @@
 
 
 
-
 <script src="./js/sweetalert2.all.js"></script>
+
 <script language="javascript"src="./js/TaskSearch.js"></script>
 <script>
-
-    let parameters = []
-
-    var statusV = 0
-
-    var Toast = Swal.mixin({
-
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000
-
-    })
-
-
-
-    
 
 
 
   
 </script>
+
+
 
     
   </body>

@@ -65,7 +65,7 @@
         window.location.href="AddTask.php"
     }
     if(page==2){
-        window.location.href="EditTask.php"
+        window.location.href="TaskSearch.php"
     }
     }
     </script>

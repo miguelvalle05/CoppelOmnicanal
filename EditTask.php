@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <title>Add Task </title>
     
 </head>
 <body>
     
 
-<h1 class="labeltopicmain">Task</h1>
+
 <div class="container">
     
 <?php	
@@ -39,7 +38,7 @@
             <label class="labeltittle">Area</label>
             <div class="input-group mb-2">
             <span class="input-group-text" id="basic-addon1">  <i class="fas fa-building"></i></span>
-            <select class="form-select" name="area" id="area" title="Area">
+            <select class="form-control" name="area" id="area" title="Area">
 														<option selected value=""></option>
 														
 															
@@ -61,7 +60,7 @@
             <label class="labeltittle">Colaborador</label>
             <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">  <i class="fas fa-user"></i></span>
-            <select class="form-select" name="coworker" id="coworker" title="Clase">
+            <select class="form-control" name="coworker" id="coworker" title="Clase">
 														<option selected value=""></option>
 														
 															
@@ -112,7 +111,7 @@
 
     </br>
 
-    <div class="d-grid gap-2 col-4 mx-auto">
+    <div class="col text-center">
             
                         <button id="btnSave" name="btnSave" type="button" class="btn btn-primary" >
                             Save

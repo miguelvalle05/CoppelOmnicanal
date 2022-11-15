@@ -15,10 +15,11 @@ class ModelTask
             
             }
 
-            $queryOne = $conexion->query("SELECT id_task,
-            id_user,
-            task_description as descripcion
-            FROM task");
+            $queryOne = $conexion->query("SELECT t.id_task,
+            u.user_name as user,
+            t.task_description as descripcion
+            FROM task t
+            INNER JOIN user u ON t.id_user=u.id_user");
         
         
                     if ($queryOne->num_rows > 0) 
@@ -53,9 +54,11 @@ class ModelTask
             
             }
 
-            $queryOne = $conexion->query("SELECT DISTINCT codigo,
-            descripcionl as descripcion
-            FROM vista_aplica_nombres_desc_ap
+            $queryOne = $conexion->query("SELECT t.id_task,
+            u.user_name as user,
+            t.task_description as descripcion
+            FROM task t
+            INNER JOIN user u ON t.id_user=u.id_user
             ".$consultageneral."");
   
                  
