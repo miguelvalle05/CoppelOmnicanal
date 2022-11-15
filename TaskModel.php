@@ -2,7 +2,7 @@
 include("./Functions.php");
 
 
-class ModelProduct
+class ModelTask
 {
     
 
@@ -15,9 +15,10 @@ class ModelProduct
             
             }
 
-            $queryOne = $conexion->query("SELECT DISTINCT codigo,
-            descripcionl as descripcion
-            FROM vista_aplica_nombres_desc_ap");
+            $queryOne = $conexion->query("SELECT id_task,
+            id_user,
+            task_description as descripcion
+            FROM task");
         
         
                     if ($queryOne->num_rows > 0) 

@@ -24,4 +24,5 @@ function conectar($pdo = false){
 }
 
 
+
 ?>

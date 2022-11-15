@@ -190,50 +190,25 @@
 <script>
 
     let parameters = []
-    let featuresS=[]
-    let featuresI=[]
-    var attribute_array = []
-    var attributev_array = []
-    var EquipmentTable=[]
-    var Toast= Swal.mixin({
 
-        toast:true,
-        position:'top-end',
-        showConfirmButton: false,
-        timer: 3000
+    var statusV = 0
+
+    var Toast = Swal.mixin({
+
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
 
     })
 
 
-    function removeElement(event, position) {
-        event.target.parentElement.remove()
-        delete parameters[position]
-    }
-
-    const addJsonElement = json => {
-        parameters.push(json)
-        return parameters.length - 1
-    }
-
-    const addJsonElementS = json => {
-        featuresS.push(json)
-        return featuresS.length - 1
-    }
-
-    const addJsonElementI = json => {
-        featuresI.push(json)
-        return featuresI.length - 1
-    }
-
-    function actualizarCod() {
-        let codigo = document.getElementById("code").value;
-        //Se actualiza en municipio inm
-        document.getElementById("codeEdit").value = codigo;
-    }
-
 
     
-	
+
+
+
+  
 </script>
 
     

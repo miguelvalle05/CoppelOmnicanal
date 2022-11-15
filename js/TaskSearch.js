@@ -29,7 +29,7 @@ $(document).ready(function() {
                     "columns": [
 
                         { "data": "id_task" },
-                        { "data": "user" },
+                        { "data": "id_user" },
                         { "data": "descripcion" },
 
                         {
@@ -38,16 +38,7 @@ $(document).ready(function() {
                                 return "<button type='button' class='btn btn-primary btnEdit'  data-whatever='" + data + "'><i class='material-icons'>edit</i></button><button type='button' class='btn btn-danger btnDelete' data-whatever='" + data + "'><i class='material-icons'>delete</i></button>";
 
                             }
-                        },
-
-                        {
-                            data: "id_task",
-                            render: function(data) {
-                                return "<button type='button' id='imgp' class='sinborde' data-whatever='" + data + "'><img class='zoom_manija' src='../../../programas/imagenes/fotos/" + data + ".jpg'   width='500' ></button>";
-
-                            }
                         }
-
 
 
                     ],
@@ -70,7 +61,7 @@ $(document).ready(function() {
 
         $("#modal-title").html("Editar Tarea - " + recipiente);
 
-        $('.modal-body').load('EditTask.php?id_task=' + recipeinte, function() {
+        $('.modal-body').load('EditTask.php?id_task=' + recipiente, function() {
 
 
             $('#editModal').modal({ show: true });

@@ -5,26 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Task </title>
-    <link rel="stylesheet" href="./css/Styles.css">
-    <link rel="stylesheet" href="./css/sweetalert2.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-   	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    
 </head>
 <body>
     
-<?php	
-        $taskEdit=$_GET['id_task'];	
-		include("./Functions.php");
-	    $conexion = conectar();
-	
 
-?>
 <h1 class="labeltopicmain">Task</h1>
 <div class="container">
+    
+<?php	
+        $taskEdit=$_GET['id_task'];
+		include("./Functions.php");
+	    $conexion = conectar();
+       
 
+?>
 
-    <form action="" id="frmGeneral" name="frmGeneral" method="POST" >
+<form action="" id="frmGeneral" name="frmGeneral" method="POST" >
 
 
     <div class="row">
@@ -33,7 +30,7 @@
             <label class="labeltittle">Task</label>
             <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">  <i class="fas fa-tasks"></i></span>
-            <input type="input" class="form-control" name="task" id="task" title="Task" value="<? echo $taskEdit  ?>" placeholder="Task">
+            <input type="input" class="form-control" name="task" id="task" title="Task" value="<?php echo $taskEdit ?>" placeholder="Task">
             </div>
             </div>
 
@@ -142,14 +139,7 @@
 </footer>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-
-
-<script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-<script src="./js/sweetalert2.all.js"></script>
 <script language="javascript"src="./js/EditTask.js"></script>
 </body>
 </html>

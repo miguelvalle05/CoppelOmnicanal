@@ -1,38 +1,9 @@
-var Toast = Swal.mixin({
-
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000
-
-})
-
-
-
-let parameters = []
-
-var statusV = 0
-
-
-
-const addJsonElement = json => {
-    parameters.push(json)
-
-}
-
-
-
-
-
-
-
-
-$(document).ready(function() {
+(function load() {
 
 
     const $form = document.getElementById("frmGeneral")
     const $btnSave = document.getElementById("btnSave")
-    const $btnHome = document.getElementById("btnHome")
+
     document.getElementById("registration").disabled = true
     document.getElementById("finish").disabled = true
     document.getElementById("status").disabled = true
@@ -204,10 +175,12 @@ $(document).ready(function() {
 
 
 
-    if ($form.code.value == "") {
+    if ($form.task.value == "") {
         alert("Ingresa una Tarea")
 
     } else {
+
+        alert("asdasdasdasd")
 
 
         $.ajax({
@@ -233,6 +206,8 @@ $(document).ready(function() {
 
                 resultado = JSON.parse(res);
                 datas = resultado["app"];
+                console.log(resultado["app"]);
+
 
 
                 $("#area").val(datas[0].id_area);
