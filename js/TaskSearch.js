@@ -17,85 +17,8 @@ const addJsonElement = json => {
     return parameters.length - 1
 }
 
-var equipment_id, fila, equipment_user;
-
-// Fetch Records
-function fetch(areaS, coworkerS, statusS, opcion) {
-
-$.ajax({
-    url: "TaskRecords.php",
-    type: "post",
-    data: {
-
-        areaS: areaS,
-        coworkerS: coworkerS,
-        statusS: statusS,
-        opcion: opcion,
-        otro: ""
 
 
-    },
-    dataType: "json",
-    success: function(data) {
-        var i = 1;
-        var TaskTable = $('#dt_task').DataTable({
-
-            "data": data,
-            "responsive": true,
-            "columns": [
-
-                { "data": "id_task" },
-                { "data": "user" },
-                { "data": "descripcion" },
-
-                {
-                    data: "id_task",
-                    render: function(data) {
-                        return "<button type='button' class='btn btn-primary btnEdit'  data-whatever='" + data + "'><i class=\"fas fa-edit\"></i></button><button type='button' class='btn btn-danger btnDelete' data-whatever='" + data + "'><i class=\"fas fa-trash\"></i></button>";
-
-                    }
-                }
-
-
-            ],
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
-            }
-        });
-
-        TaskTable.on("init.dt",function(){
-
-            for(i=0;i<TaskTable.rows().count();i++){
-
-                var row= TaskTable.row(i)
-                var statusF=row.data().statusF;
-
-                if(statusF==0){
-                    
-                    $(row.node()).css("background-color","#F5E6E5")
-
-                }
-                else{
-
-                    $(row.node()).css("background-color","#D6F6C8")
-
-                    
-
-                }
-
-            }
-        
-        });
-
-
-
-
-        
-    }
-});
-
-}
-fetch("","","",0);
 
 
 
@@ -107,6 +30,85 @@ fetch("","","",0);
 
 
 $(document).ready(function() {
+
+    
+// Fetch Records
+function fetch(areaS, coworkerS, statusS, opcion) {
+
+    $.ajax({
+        url: "TaskRecords.php",
+        type: "post",
+        data: {
+    
+            areaS: areaS,
+            coworkerS: coworkerS,
+            statusS: statusS,
+            opcion: opcion,
+            otro: ""
+    
+    
+        },
+        dataType: "json",
+        success: function(data) {
+            var i = 1;
+            var TaskTable = $('#dt_task').DataTable({
+    
+                "data": data,
+                "responsive": true,
+                "columns": [
+    
+                    { "data": "id_task" },
+                    { "data": "user" },
+                    { "data": "descripcion" },
+    
+                    {
+                        data: "id_task",
+                        render: function(data) {
+                            return "<button type='button' class='btn btn-primary btnEdit'  data-whatever='" + data + "'><i class=\"fas fa-edit\"></i></button><button type='button' class='btn btn-danger btnDelete' data-whatever='" + data + "'><i class=\"fas fa-trash\"></i></button>";
+    
+                        }
+                    }
+    
+    
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                }
+            });
+    
+            TaskTable.on("init.dt",function(){
+    
+                for(i=0;i<TaskTable.rows().count();i++){
+    
+                    var row= TaskTable.row(i)
+                    var statusF=row.data().statusF;
+    
+                    if(statusF==0){
+                        
+                        $(row.node()).css("background-color","#F5E6E5")
+    
+                    }
+                    else{
+    
+                        $(row.node()).css("background-color","#D6F6C8")
+    
+                        
+    
+                    }
+    
+                }
+            
+            });
+    
+    
+    
+    
+            
+        }
+    });
+    
+    }
+    fetch("","","",0);
 
    
 
@@ -250,15 +252,16 @@ $(document).ready(function() {
         $("#modal-title").html("Editar Tarea - " + recipiente);
 
         $('.modal-body').load('EditTask.php?id_task=' + recipiente, function() {
+            
 
 
-            $('#editModal').modal({ show: true });
+            $('#editModal').modal('show');
 
         });
 
     });
 
-
+    //DELETE
     $(document).on('click', '.btnDelete', function() {
 
         var recipiente = $(this).data("whatever");
