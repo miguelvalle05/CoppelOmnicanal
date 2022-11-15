@@ -286,7 +286,11 @@ $(document).ready(function() {
 
                     } else {
 
-                        window.TaskTable.ajax.reload();
+                        $('#dt_task').DataTable().clear().draw();
+            $('#dt_task').DataTable().destroy();
+
+            fetch("","","",0);
+
 
                         Toast.fire({
                             icon: "success",

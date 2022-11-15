@@ -130,13 +130,6 @@
 <br>
 
 
-<footer>
-   
-   <p style="text-align:center "> <strong><i class="fas fa-laptop-code"> </i> Miguel Valle</strong></p>
-   <p style="text-align:center "> <strong>made with     &#128147</strong></p>
-
-</footer>
-
 
 
 <script language="javascript"src="./js/EditTask.js"></script>
