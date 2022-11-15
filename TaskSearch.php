@@ -46,7 +46,10 @@
 														
 										
 									<?php
-									$result = $conexion->query("SELECT id_area, area_description FROM area ");
+									$result = $conexion->query("SELECT DISTINCT t.id_area, 
+                                    a.area_description 
+                                    FROM task t
+                                    INNER JOIN area a ON t.id_area=a.id_area ");
 									if ($result->num_rows > 0) {
 										while ($row = $result->fetch_assoc()) { 
 											echo '<option value="'.$row['id_area'].'">'.$row['area_description'].'</option>';
@@ -92,6 +95,8 @@
             <span class="input-group-text" id="basic-addon1"> <i class="fas fa-user"></i></span>
             <select class="form-control" name="statusS" id="statusS" title="Clase">
 														<option selected value=""></option>
+                                                        <option value="0">Pendiente</option>
+                                                        <option value="1">Completado</option>
 														
 															
 														
@@ -133,17 +138,11 @@
 
     </br>
 
-    <div class="col text-center">
-            
-                        <button id="btnHome" name="btnHome" type="button" class="btn btn-success" >
-                        <i class="fas fa-home"></i>
-                        </button>
-                        
-    </div>
+   
 
-    </br>
+    
 
-  <!--     
+ 
        <p class="title is-4 is-spaced">Reporte:</p>
      
             <div class="control">
@@ -154,11 +153,22 @@
             <div class="field is-grouped">
             <span class="man" name="report" id="report">
 
-            
+           
 						
 			</span>	
 
-            </div> -->
+            </div> 
+
+            </br>
+
+            <div class="col text-center">
+            
+            <button id="btnHome" name="btnHome" type="button" class="btn btn-success" >
+            <i class="fas fa-home"></i>
+            </button>
+            
+            </div>
+            
 
             
      

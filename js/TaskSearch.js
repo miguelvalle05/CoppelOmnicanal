@@ -38,7 +38,7 @@ $.ajax({
     dataType: "json",
     success: function(data) {
         var i = 1;
-        TaskTable = $('#dt_task').DataTable({
+        var TaskTable = $('#dt_task').DataTable({
 
             "data": data,
             "responsive": true,
@@ -62,6 +62,35 @@ $.ajax({
                 "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
             }
         });
+
+        TaskTable.on("init.dt",function(){
+
+            for(i=0;i<TaskTable.rows().count();i++){
+
+                var row= TaskTable.row(i)
+                var statusF=row.data().statusF;
+
+                if(statusF==0){
+                    
+                    $(row.node()).css("background-color","#F5E6E5")
+
+                }
+                else{
+
+                    $(row.node()).css("background-color","#D6F6C8")
+
+                    
+
+                }
+
+            }
+        
+        });
+
+
+
+
+        
     }
 });
 
@@ -75,7 +104,11 @@ fetch("","","",0);
 
 
 
+
+
 $(document).ready(function() {
+
+   
 
 
 
@@ -83,7 +116,7 @@ $(document).ready(function() {
     $("#areaS").change(function() {
         $("#areaS option:selected").each(function() {
             id_area = $(this).val();
-            $.post("Area.php", { id_area: id_area }, function(data) {
+            $.post("Area.php", { id_area: id_area,option:1 }, function(data) {
                 
 
                     $("#coworkerS").html(data);
@@ -145,28 +178,29 @@ $(document).ready(function() {
     })
 
     //STATUS
-    $("#status").change(function() {
-        if ($(this).is(':checked')) {
-            statusV = 1;
+    $("#statusS").change(function() {
+
+        var areaS = $("#areaS").val();
+        var coworkerS = $("#coworkerS").val();
+        var statusS = $("#statusS").val();
+        
 
 
-            var date = new Date(); //Fecha actual
-            var month = date.getMonth() + 1; //obteniendo mes
-            var day = date.getDate(); //obteniendo dia
-            var year = date.getFullYear(); //obteniendo año
-            if (day < 10)
-                day = '0' + day; //agrega cero si el menor de 10
-            if (month < 10)
-                month = '0' + month //agrega cero si el menor de 10
-            document.getElementById('finish').value = year + "-" + month + "-" + day;
+
+        if (areaS == "" && coworkerS == "" && statusS == "" ) {
+
+            $('#dt_task').DataTable().clear().draw();
+            $('#dt_task').DataTable().destroy();
+
+            fetch("","","",0);
+
 
         } else {
-
-            statusV = 0;
-            $("#finish").val("0000-00-00");
-
-
+            $('#dt_task').DataTable().clear().draw();
+            $('#dt_task').DataTable().destroy();
+            fetch(areaS, coworkerS, statusS,1);
         }
+       
     })
 
 
@@ -252,7 +286,7 @@ $(document).ready(function() {
 
                     } else {
 
-                        window.TaskTable.ajax.reload(null, false);
+                        window.TaskTable.ajax.reload();
 
                         Toast.fire({
                             icon: "success",
@@ -296,16 +330,9 @@ $(document).ready(function() {
 
     $("#btnReport").click(function() {
 
-        if (document.getElementById("equipmentR").value == "") {
-            filter = 0
-        } else {
+       
 
-            filter = document.getElementById("equipmentR").value
-
-
-        }
-
-        $.post("equipmentReport.php", { equipmentR: filter }, function(data) {
+        $.post("TaskReport.php", { area: $("#areaS").val(), user:$("#coworkerS").val(), status:$("#statusS").val()}, function(data) {
 
             $("#report").html(data);
 
@@ -315,14 +342,6 @@ $(document).ready(function() {
 
 
 
-        console.log(filter)
-
-        $.post("serviceEReport.php", { equipmentR: filter }, function(data) {
-
-            $("#serviceReport").html(data);
-
-
-        });
 
 
     });

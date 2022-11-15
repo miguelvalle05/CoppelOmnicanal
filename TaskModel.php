@@ -17,6 +17,7 @@ class ModelTask
 
             $queryOne = $conexion->query("SELECT t.id_task,
             u.user_name as user,
+            t.status as statusF,
             t.task_description as descripcion
             FROM task t
             INNER JOIN user u ON t.id_user=u.id_user");
@@ -56,6 +57,7 @@ class ModelTask
 
             $queryOne = $conexion->query("SELECT t.id_task,
             u.user_name as user,
+            t.status as statusF,
             t.task_description as descripcion
             FROM task t
             INNER JOIN user u ON t.id_user=u.id_user

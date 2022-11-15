@@ -87,7 +87,7 @@ $(document).ready(function() {
     $("#area").change(function() {
         $("#area option:selected").each(function() {
             id_area = $(this).val();
-            $.post("Area.php", { id_area: id_area }, function(data) {
+            $.post("Area.php", { id_area: id_area,option:0 }, function(data) {
                 $("#coworker").html(data);
 
             });
